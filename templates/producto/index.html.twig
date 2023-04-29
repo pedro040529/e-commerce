@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Producto index{% endblock %}
+
+{% block body %}
+    <h1>Producto index</h1>
+{# 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Inventario</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Imagen</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for producto in productos %}
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.inventario }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.estado ? 'Yes' : 'No' }}</td>
+                <td>{{ producto.imagen }}</td>
+                <td>
+                    <a href="{{ path('app_producto_show', {'id': producto.id}) }}">show</a>
+                    <a href="{{ path('app_producto_edit', {'id': producto.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table> #}
+    {{ form_start(form) }}
+        {{ form_row(form.nombre) }}
+         <button type="submit" class="btn btn-primary">Let's Nom!</button>
+    {{ form_end(form) }}
+    <div {{ react_component('MyComponent', { 'productos': productos }) }}></div>
+    {#<div data-controller="hello"></div> #}
+    {# <div data-controller="producto" data-target="producto.productos"></div> #}
+    <!-- Aquí se mostrarán los productos -->
+    {# <div {{ react_component('List', { productos : productos}) }}></div> #}
+    <a href="{{ path('app_producto_new') }}">Create new</a>
+    <div>{{ dump(productos)}} </div>
+{% endblock %}
